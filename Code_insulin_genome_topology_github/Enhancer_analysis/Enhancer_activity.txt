@@ -1,0 +1,27 @@
+#Identification of enhancer activity using enhancer transcription.
+
+#Add IDs for each enhancer
+awk 'BEGIN {OFS="\t"} {print $0, "enh_" NR}' /n/data1/bidmc/medicine/kahn/lab/xyl/Mic_project_others_from_2024/Mic4_9_2_dif_enhancer/Enh_dif_analysis/true_enhancer_peaks_liver.bed > /n/data1/bidmc/medicine/kahn/lab/xyl/Mic_project_others_from_2024/Mic4_9_2_dif_enhancer/Enh_dif_analysis/name_added_true_enhancer_peaks_liver.bed
+
+#use bigWigAverageOverBed again
+/n/data1/bidmc/medicine/kahn/lab/xyl/Packages_XYL/UCSC_All/bigWigAverageOverBed \
+/n/data1/bidmc/medicine/kahn/lab/xyl/Mic_project_others_from_2024/Mic4_9_2_dif_enhancer/bigwig_file/ctl_F._norm.bw \
+/n/data1/bidmc/medicine/kahn/lab/xyl/Mic_project_others_from_2024/Mic4_9_2_dif_enhancer/Enh_dif_analysis/name_added_true_enhancer_peaks_liver.bed \
+/n/data1/bidmc/medicine/kahn/lab/xyl/Mic_project_others_from_2024/Mic4_9_2_dif_enhancer/Enh_dif_analysis/bwAvebed_output/ctl_F._norm_enhancer.tab
+
+/n/data1/bidmc/medicine/kahn/lab/xyl/Packages_XYL/UCSC_All/bigWigAverageOverBed \
+/n/data1/bidmc/medicine/kahn/lab/xyl/Mic_project_others_from_2024/Mic4_9_2_dif_enhancer/bigwig_file/ctl_R._norm.bw \
+/n/data1/bidmc/medicine/kahn/lab/xyl/Mic_project_others_from_2024/Mic4_9_2_dif_enhancer/Enh_dif_analysis/name_added_true_enhancer_peaks_liver.bed \
+/n/data1/bidmc/medicine/kahn/lab/xyl/Mic_project_others_from_2024/Mic4_9_2_dif_enhancer/Enh_dif_analysis/bwAvebed_output/ctl_R._norm_enhancer.tab
+
+/n/data1/bidmc/medicine/kahn/lab/xyl/Packages_XYL/UCSC_All/bigWigAverageOverBed \
+/n/data1/bidmc/medicine/kahn/lab/xyl/Mic_project_others_from_2024/Mic4_9_2_dif_enhancer/bigwig_file/ins_F._norm.bw \
+/n/data1/bidmc/medicine/kahn/lab/xyl/Mic_project_others_from_2024/Mic4_9_2_dif_enhancer/Enh_dif_analysis/name_added_true_enhancer_peaks_liver.bed \
+/n/data1/bidmc/medicine/kahn/lab/xyl/Mic_project_others_from_2024/Mic4_9_2_dif_enhancer/Enh_dif_analysis/bwAvebed_output/ins_F._norm_enhancer.tab
+
+/n/data1/bidmc/medicine/kahn/lab/xyl/Packages_XYL/UCSC_All/bigWigAverageOverBed \
+/n/data1/bidmc/medicine/kahn/lab/xyl/Mic_project_others_from_2024/Mic4_9_2_dif_enhancer/bigwig_file/ins_R._norm.bw \
+/n/data1/bidmc/medicine/kahn/lab/xyl/Mic_project_others_from_2024/Mic4_9_2_dif_enhancer/Enh_dif_analysis/name_added_true_enhancer_peaks_liver.bed \
+/n/data1/bidmc/medicine/kahn/lab/xyl/Mic_project_others_from_2024/Mic4_9_2_dif_enhancer/Enh_dif_analysis/bwAvebed_output/ins_R._norm_enhancer.tab
+
+

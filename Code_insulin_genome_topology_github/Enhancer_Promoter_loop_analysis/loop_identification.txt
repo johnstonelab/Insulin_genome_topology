@@ -1,0 +1,27 @@
+#Loop identification using MUSTACHE
+
+module load miniconda3/4.10.3
+module load gcc/9.2.0
+
+#Create an environment for MUSTACHE
+
+git clone https://github.com/ay-lab/mustache /n/data1/bidmc/medicine/kahn/lab/xyl/Mic_project_others_from_2024/Mic8_4_loop_mustache/gitclone/mustache
+
+mamba env create -f /n/data1/bidmc/medicine/kahn/lab/xyl/Mic_project_others_from_2024/Mic8_4_loop_mustache/gitclone/mustache/environment.yml
+
+#activate the environment
+source activate mustache
+
+#For the control group
+/n/data1/bidmc/medicine/kahn/lab/xyl/Mic_project_others_from_2024/Mic8_4_loop_mustache/gitclone/mustache/mustache/mustache.py \
+-f /n/data1/bidmc/medicine/kahn/lab/xyl/Mic5_2_2_POSSUMM_Nova/merged_hic_files/with_chr_merged_hic_POSSUMM/merge_Ctl_MicroC.hic \
+-r 1250 \
+-p 8 \
+-o /n/data1/bidmc/medicine/kahn/lab/xyl/Mic_project_others_from_2024/Mic8_4_loop_mustache/mustach_output/reso_1250/merge_Ctl_MicroC_r1250_loop.tsv
+
+#For the insulin group
+/n/data1/bidmc/medicine/kahn/lab/xyl/Mic_project_others_from_2024/Mic8_4_loop_mustache/gitclone/mustache/mustache/mustache.py \
+-f /n/data1/bidmc/medicine/kahn/lab/xyl/Mic5_2_2_POSSUMM_Nova/merged_hic_files/with_chr_merged_hic_POSSUMM/merge_Ins_MicroC.hic \
+-r 1250 \
+-p 8 \
+-o /n/data1/bidmc/medicine/kahn/lab/xyl/Mic_project_others_from_2024/Mic8_4_loop_mustache/mustach_output/reso_1250/merge_Ins_MicroC_r1250_loop.tsv

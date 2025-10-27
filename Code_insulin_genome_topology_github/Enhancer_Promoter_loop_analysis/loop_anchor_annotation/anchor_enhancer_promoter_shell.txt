@@ -1,0 +1,20 @@
+#This is the Step4 of anchor annotation: anchor_E_P_annotation
+
+module load gcc/9.2.0 bedtools/2.30.0
+
+##Merge enhancer and promoter bed files
+cat /n/data1/bidmc/medicine/kahn/lab/xyl/Mic_project_others_from_2024/Mic8_4_loop_mustache/Mic8_4_3_loop_annotation/Mic4_9_TSS_500_name_added.bed /n/data1/bidmc/medicine/kahn/lab/xyl/Mic_project_others_from_2024/Mic4_9_2_dif_enhancer/Enh_dif_analysis/name_added_true_enhancer_peaks_liver.bed > /n/data1/bidmc/medicine/kahn/lab/xyl/Mic_project_others_from_2024/Mic8_4_loop_mustache/Mic8_4_3_loop_annotation/merged_TSS_500_enhancers_liver_name.bed
+
+#check the number of rows
+wc -l /n/data1/bidmc/medicine/kahn/lab/xyl/Mic_project_others_from_2024/Mic8_4_loop_mustache/Mic8_4_3_loop_annotation/merged_TSS_500_enhancers_liver_name.bed
+
+## Annotate anchors
+#anchor1
+bedtools intersect -a /n/data1/bidmc/medicine/kahn/lab/xyl/Mic_project_others_from_2024/Mic8_4_loop_mustache/Mic8_4_3_loop_annotation/Mic8_4_3_R/anchors_loop_combined/loop_r1250_combined_anchor1.bed \
+-b /n/data1/bidmc/medicine/kahn/lab/xyl/Mic_project_others_from_2024/Mic8_4_loop_mustache/Mic8_4_3_loop_annotation/merged_TSS_500_enhancers_liver_name.bed \
+-wa -wb > /n/data1/bidmc/medicine/kahn/lab/xyl/Mic_project_others_from_2024/Mic8_4_loop_mustache/Mic8_4_3_loop_annotation/Mic8_4_3_R/anchors_loop_combined_annotated/anchor1_with_TSS_enhancers.tsv
+
+#anchor2
+bedtools intersect -a /n/data1/bidmc/medicine/kahn/lab/xyl/Mic_project_others_from_2024/Mic8_4_loop_mustache/Mic8_4_3_loop_annotation/Mic8_4_3_R/anchors_loop_combined/loop_r1250_combined_anchor2.bed \
+-b /n/data1/bidmc/medicine/kahn/lab/xyl/Mic_project_others_from_2024/Mic8_4_loop_mustache/Mic8_4_3_loop_annotation/merged_TSS_500_enhancers_liver_name.bed \
+-wa -wb > /n/data1/bidmc/medicine/kahn/lab/xyl/Mic_project_others_from_2024/Mic8_4_loop_mustache/Mic8_4_3_loop_annotation/Mic8_4_3_R/anchors_loop_combined_annotated/anchor2_with_TSS_enhancers.tsv

@@ -1,0 +1,29 @@
+#Generate KR-normalized .hic files for ctl and ins groups. For compartment calling, the highest resolution utilized is 500 bp.
+
+sbatch -p medium -t 4-20:00 -c 6 --job-name hic_chr_ctl --mem 249G --wrap="java -Xmx247g -jar /n/data1/bidmc/medicine/kahn/lab/xyl/Packages_XYL/juicer_tools_java_1.22.01/juicer_tools_1.22.01.jar pre -k KR -r 500,1250,2500,5000,12500,25000,50000,2500000 \
+/n/scratch/users/x/xl257/Mic5_2_2_POSSUMM_terra/matrix_Terra_merged/merge_Ctl_MicroC.mapped.pairs \
+/n/data1/bidmc/medicine/kahn/lab/xyl/Mic5_2_2_POSSUMM_Nova/merged_hic_files/with_chr_merged_hic_POSSUMM/merge_Ctl_MicroC.hic \
+/n/data1/bidmc/medicine/kahn/lab/xyl/chr_size/mm10_ordered/mm10.chrom.ordered.sizes"
+
+sbatch -p medium -t 4-20:00 -c 6 --job-name hic_chr_ins --mem 249G --wrap="java -Xmx247g -jar /n/data1/bidmc/medicine/kahn/lab/xyl/Packages_XYL/juicer_tools_java_1.22.01/juicer_tools_1.22.01.jar pre -k KR -r 500,1250,2500,5000,12500,25000,50000,2500000 \
+/n/scratch/users/x/xl257/Mic5_2_2_POSSUMM_terra/matrix_Terra_merged/merge_Ins_MicroC.mapped.pairs \
+/n/data1/bidmc/medicine/kahn/lab/xyl/Mic5_2_2_POSSUMM_Nova/merged_hic_files/with_chr_merged_hic_POSSUMM/merge_Ins_MicroC.hic \
+/n/data1/bidmc/medicine/kahn/lab/xyl/chr_size/mm10_ordered/mm10.chrom.ordered.sizes"
+
+
+#Call compartment scores for individual chromosome.
+cd /n/data1/bidmc/medicine/kahn/lab/xyl/Mic5_2_2_POSSUMM_Nova/POSSUM_scripts
+
+sh loop_chr_sbatch_possum.sh \
+/n/data1/bidmc/medicine/kahn/lab/xyl/chr_size/mm10_ordered/mm10.chrom.ordered.sizes \
+/n/data1/bidmc/medicine/kahn/lab/xyl/Mic5_2_2_POSSUMM_Nova/merged_hic_files/with_chr_merged_hic_POSSUMM/merge_Ctl_MicroC.hic \
+/n/data1/bidmc/medicine/kahn/lab/xyl/Mic5_2_2_POSSUMM_Nova/POSSUM_output_Merged/POSSUM_Ctl \
+500
+
+sh loop_chr_sbatch_possum.sh \
+/n/data1/bidmc/medicine/kahn/lab/xyl/chr_size/mm10_ordered/mm10.chrom.ordered.sizes \
+/n/data1/bidmc/medicine/kahn/lab/xyl/Mic5_2_2_POSSUMM_Nova/merged_hic_files/with_chr_merged_hic_POSSUMM/merge_Ins_MicroC.hic \
+/n/data1/bidmc/medicine/kahn/lab/xyl/Mic5_2_2_POSSUMM_Nova/POSSUM_output_Merged/POSSUM_Ins \
+500
+
+
